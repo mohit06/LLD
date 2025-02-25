@@ -27,6 +27,8 @@ public class Main {
         tm.assignTaskToUser(t2,user2);
         tm.assignTaskToUser(t3,user3);
 
+        user1.assignTaskToUser(user2,t1);
+
         tm.deleteTask(2L);
     }
 }
