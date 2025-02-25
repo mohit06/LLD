@@ -49,4 +49,10 @@ public class User {
         task.setAssignedUser(null);
         taskList.remove(task);
     }
+
+    public void assignTaskToUser(User user, Task task){
+        //we can use userManager to check if user already exist or not and assign task based on it.
+        user.assignTask(task);
+        taskList.remove(task);
+    }
 }
