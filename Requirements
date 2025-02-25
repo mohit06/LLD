@@ -9,6 +9,6 @@ The system should be extensible to accommodate future enhancements and new featu
 Possible patterns that can be used:
 Singleton for TaskManager.
 Builder for creating Task Object.
-Strategy for filtering/searching strategies.
+Specification Pattern for filtering/searching.
 Observer Pattern may be used to send notification/reminder. But I think it is better to schedule the method to execute at set time instead of using observer because no one is observing here.
 But if more than 1 users needs to get a reminder then we can use Observer Pattern.
