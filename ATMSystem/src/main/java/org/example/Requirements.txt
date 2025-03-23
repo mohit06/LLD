@@ -1,0 +1,44 @@
+Requirements:
+1.The ATM system should support basic operations such as balance inquiry, cash withdrawal, and cash deposit.
+2.Users should be able to authenticate themselves using a card and a PIN (Personal Identification Number).
+3.The system should interact with a bank's backend system to validate user accounts and perform transactions.
+4.The ATM should have a cash dispenser to dispense cash to users.
+5.The system should handle concurrent access and ensure data consistency.
+
+Components:
+ATMSystem
+User
+UserAccount
+Card -> Number & Pin
+BankBackendSystem
+CashDispenser
+
+Responsibilities:
+ATMSystem:
+getBalance(Card card);
+withdrawCash(int amt, Card card); //synchronized
+depositCash(int amt, Card card); //synchronized
+It will compose of BankBackendSystem and CashDispenser
+
+BankBackendSystem:
+It will have a list of accounts. We can also use a HashMap or ConcurrentHashMap(in case of multithreading)
+and map card with UserAccount. In my design I have kept it as part UserAccount.
+validateUser(Card card)
+addUserAccount(UserAccount account)
+addBalanceToAccount(int amt, UserAccount account) //synchronized
+withdrawFromAccount(int amt, UserAccount account) //synchronized
+
+CashDispenser:
+If there is enough balance and enough notes in ATM machine, then we would need to decide how many notes of each type should be
+given out to User.
+
+DesignPatterns Used: Singleton for AtmSystem
+Chain of Responsibility for CashDispenser
+
+Possible other patterns that can be used in such problems:
+State Pattern: Atm can be in certain states like working or not working and based on it the methods should not try to behave in normal ways.
+Rather they should raise error saying Atm is under maintainance or not working.
+Observer Pattern: You have taken out or deposited some amount and if you want to get notified then this pattern can be used.
+There can be many other patterns that we can think of and apply in this example.
+
+
